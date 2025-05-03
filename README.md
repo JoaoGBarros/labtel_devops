@@ -1,16 +1,16 @@
 # Teste de Conhecimento em DevOps - Labtel/2025
 
-## Introdução
+## 1. Introdução
 
 Este repositório contém a solução para o teste de conhecimento em DevOps proposto pelo Laboratório de Telecomunicações (Labtel).
 
-### Descrição da Tarefa
+### 2. Descrição da Tarefa
 
 > Crie um ambiente de execução conteinerizado contemplando as camadas de Front-end, Back-end e Banco de Dados (MySQL). Para isso, utilize os códigos disponibilizados na vídeo aula, onde também é possível encontrar um arquivo `.sql` que deverá ser importado para o contêiner MySQL. O ambiente precisa ter uma rede própria, e os contêineres de Banco de Dados e Back-end devem se comunicar através dessa rede.  
 >
 > **Tarefa adicional:** envie as imagens criadas para o Docker Hub em sua conta pessoal e atualize o `docker-compose.yml` conforme necessário.
 
-## Tecnologias Utilizadas
+## 3. Tecnologias Utilizadas
 
 - **WSL/Ubuntu** – Ambiente de desenvolvimento;
 - **Docker** – Containerização dos serviços;
@@ -18,9 +18,9 @@ Este repositório contém a solução para o teste de conhecimento em DevOps pro
 - **Insomnia** - Ferramenta de testes de API utilizada para realizar requisições e validar os endpoints desenvolvidos;
 - **Google Chrome** – Navegador utilizado para testes no Front-end;
 
-## Passo a Passo para Executar o Projeto
+## 4. Passo a Passo para Executar o Projeto
 
-### 1. Clonar o Repositório
+### 4.1. Clonar o Repositório
 
 ```bash
 git clone https://github.com/JoaoGBarros/labtel_devops.git
@@ -28,7 +28,7 @@ cd labtel_devops
 
 ```
 
-### 2. Subir o container
+### 4.2. Subir o container
 
 Para subir os containers contendo o frontend, back-end e banco de dados é necessario, primeiro, criar a rede que servirá para a comunicação entre o back-end e o banco de dados. Utilize o comando:
 
@@ -42,11 +42,11 @@ Após a criação da rede, podemos realizar o comando:
 docker-compose up --build -d
 ```
 
-### 3. Vericando conexão
+### 4.3. Vericando conexão
 
 Para verificar se os containers foram inicializados e estão funcionando corretamente 
 
-#### 3.1. Acessar o Back-end
+#### 4.3.1 Acessar o Back-end
 
 Acesse a documentação da API no endereço:
 
@@ -64,7 +64,7 @@ http://localhost:18003/sensorData/?date_reference=<yyyy-mm-dd>&start_time=<hora>
 ```
 Substitua os parâmetros com os valores desejados.
 
-#### 3.2. Acessar o Frontend
+#### 4.3.2. Acessar o Frontend
 
 Acesse a aplicação web no endereço: 
 
@@ -75,7 +75,7 @@ Você poderá navegar pelas páginas Início, Mapa e Sobre.
 
 No endereço http://localhost:8080/map, é possível visualizar o mapa interativo com os dados dos sensores. Os dados estão disponíveis até 28/03/2025.
 
-## 4. Correções
+## 5. Correções
 
 Havia um problema ao realizar requisições entre 00:00:00 e 23:59:59, causado por uma adição de 3 horas nos horários inseridos. Isso resultava em buscas incorretas de dados (por exemplo, 23:59:59 se tornava 02:59:59 do mesmo dia).
 
