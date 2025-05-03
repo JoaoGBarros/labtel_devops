@@ -1,0 +1,44 @@
+services:
+
+  db:
+    image: mysql:latest
+    container_name: air-quality-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: AirQuality
+      MYSQL_USER: devops
+      MYSQL_PASSWORD: password123
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./CPID-DevOps-AirQuality-Backend/mysql-dump/AirQuality-2025-03-28-09-40-01.sql:/docker-entrypoint-initdb.d/dump.sql
+    networks:
+      - airquality
+    
+  frontend:
+    build:
+      context: ./CPID-DevOps-AirQuality-Frontend
+    image: air-quality-front
+    container_name: air-quality-frontend
+    ports:
+      - "8080:80"
+  backend:
+    build:
+      context: ./CPID-DevOps-AirQuality-Backend
+    image: air-quality-back
+    container_name: air-quality-backend
+    ports:
+      - "18003:8003"
+    env_file: ./CPID-DevOps-AirQuality-Backend/.env
+    depends_on:
+      - db
+    networks:
+      - airquality
+
+volumes:
+  db_data:
+
+networks:
+  airquality:
+    external: true
